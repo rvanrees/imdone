@@ -77,7 +77,7 @@ export default function ImDone() {
         await navigator.share({
           files: [file],
           title: "My Last Post",
-          text: "I'm done #offline",
+          text: "I'm done. #bye",
         });
       } else {
         const link = document.createElement("a");
