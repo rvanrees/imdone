@@ -54,13 +54,39 @@ export default function ImDone() {
   const handleDownload = async () => {
     if (!cardRef.current || !name) return;
     try {
-      const dataUrl = await domtoimage.toPng(cardRef.current);
-      const link = document.createElement("a");
-      link.href = dataUrl;
-      link.download = "imdone.png";
-      link.click();
+      await document.fonts.ready;
+      const scale = window.devicePixelRatio || 1;
+      const node = cardRef.current;
+      const style = {
+        transform: `scale(${scale})`,
+        transformOrigin: "top left",
+        width: `${node.offsetWidth}px`,
+        height: `${node.offsetHeight}px`,
+      };
+
+      const blob = await domtoimage.toBlob(node, {
+        bgcolor: "#000000",
+        width: node.offsetWidth * scale,
+        height: node.offsetHeight * scale,
+        style,
+      });
+
+      const file = new File([blob], "imdone.png", { type: "image/png" });
+
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        await navigator.share({
+          files: [file],
+          title: "My Last Post",
+          text: "I'm done #offline",
+        });
+      } else {
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = "imdone.png";
+        link.click();
+      }
     } catch (err) {
-      console.error("Image generation failed", err);
+      console.error("Image generation or sharing failed", err);
     }
   };
 
@@ -80,11 +106,13 @@ export default function ImDone() {
           id="firstname"
           type="text"
           placeholder="Your name"
+          autoComplete="false"
           maxLength={30}
           value={name}
           onChange={(e) => setName(e.target.value)}
           className="w-full rounded-md bg-black p-3 mb-6 border border-gray-800 focus:ring-2 focus:ring-white text-white placeholder-gray-500"
         />
+
         {/* Preview card */}
         <div
           ref={cardRef}
