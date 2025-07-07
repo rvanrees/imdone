@@ -11,6 +11,7 @@ export default function ImDone() {
 
   useEffect(() => {
     const dateStr = new Date().toLocaleString(undefined, {
+      year: "numeric",
       month: "short",
       day: "numeric",
       hour: "2-digit",
@@ -62,13 +63,6 @@ export default function ImDone() {
       console.error("Image generation failed", err);
     }
   };
-
-  const dateStr = new Date().toLocaleString(undefined, {
-    month: "short",
-    day: "numeric",
-    hour: "2-digit",
-    minute: "2-digit",
-  });
 
   return (
     <div className="min-h-screen bg-black flex flex-col items-center text-white font-sans">
