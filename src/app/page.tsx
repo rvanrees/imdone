@@ -44,6 +44,10 @@ export default function ImDone() {
     });
   }, []);
 
+  const handleName = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setName(e.target.value);
+  };
+
   const handleShare = async () => {
     try {
       const response = await fetch(imageUrl);
@@ -85,7 +89,7 @@ export default function ImDone() {
           maxLength={30}
           autoComplete="off"
           value={name}
-          onInput={(e) => setName((e.target as HTMLInputElement).value)}
+          onChange={handleName}
           className="w-full rounded-md bg-black p-3 mb-6 border border-gray-800 focus:ring-2 focus:ring-white text-white placeholder-gray-500"
         />
 
