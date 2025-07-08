@@ -58,7 +58,10 @@ export default function ImDone() {
         await navigator.share({
           files: [file],
           title: `${name} on imdone.online`,
-          text: `I'm done. #bye`,
+          text: `I'm done. 
+          #bye
+          
+          https://imdone.online`,
         });
       } else {
         const link = document.createElement("a");
