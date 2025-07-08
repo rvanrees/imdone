@@ -59,9 +59,9 @@ export default function ImDone() {
           files: [file],
           title: `${name} on imdone.online`,
           text: `I'm done. 
-          #bye
+#bye
           
-          https://imdone.online`,
+https://imdone.online`,
         });
       } else {
         const link = document.createElement("a");
