@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Script from "next/script";
 
 export default function ImDone() {
   const [name, setName] = useState("");
@@ -76,6 +77,13 @@ https://imdone.online`,
 
   return (
     <div className="min-h-screen bg-black flex flex-col items-center text-white font-sans">
+      <Script
+        id="adsense-init"
+        strategy="afterInteractive"
+        async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3493162279498337"
+        crossOrigin="anonymous"
+      />
       <div className="max-w-md w-full bg-black p-8">
         <h1 className="text-2xl sm:text-4xl font-extrabold mb-1 sm:mb-2 text-white">
           I'm Done.
