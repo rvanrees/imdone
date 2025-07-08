@@ -6,7 +6,7 @@ export default function ImDone() {
   const [name, setName] = useState("");
   const [timestamp, setTimestamp] = useState("");
   const [location, setLocation] = useState("");
-  const [imageUrl, _setImageUrl] = useState("/im-done.png");
+  const [imageUrl, _setImageUrl] = useState("/im-done.mp4");
 
   useEffect(() => {
     const dateStr = new Date().toLocaleString(undefined, {
@@ -52,7 +52,7 @@ export default function ImDone() {
     try {
       const response = await fetch(imageUrl);
       const blob = await response.blob();
-      const file = new File([blob], "im-done.png", { type: blob.type });
+      const file = new File([blob], "im-done.mp4", { type: blob.type });
 
       if (navigator.canShare && navigator.canShare({ files: [file] })) {
         await navigator.share({
@@ -63,7 +63,7 @@ export default function ImDone() {
       } else {
         const link = document.createElement("a");
         link.href = URL.createObjectURL(file);
-        link.download = "im-done.png";
+        link.download = "im-done.mp4";
         link.click();
       }
     } catch (err) {
@@ -106,11 +106,14 @@ export default function ImDone() {
             </div>
           </div>
 
-          {/* Image */}
-          <img
-            src={imageUrl}
-            alt="imdone"
-            className="w-full h-64 object-cover"
+          {/* Video */}
+          <video
+            src="/im-done.mp4"
+            className="w-full h-80 object-cover"
+            autoPlay
+            loop
+            muted
+            playsInline
           />
 
           {/* Caption */}
