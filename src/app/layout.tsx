@@ -10,7 +10,7 @@ const font = Geist({
 export const metadata: Metadata = {
   title: "I'm Done.",
   description:
-    "Say goodbye in style, log off, and discover a strange new world called real life. One without notifications. ❤️",
+    "Say goodbye in style, log off, and discover a strange new world called real life, one without notifications.",
 };
 
 export default function RootLayout({
