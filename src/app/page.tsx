@@ -6,7 +6,7 @@ export default function ImDone() {
   const [name, setName] = useState("");
   const [timestamp, setTimestamp] = useState("");
   const [location, setLocation] = useState("");
-  const [imageUrl, setImageUrl] = useState("/im-done.png");
+  const [imageUrl, _setImageUrl] = useState("/im-done.png");
 
   useEffect(() => {
     const dateStr = new Date().toLocaleString(undefined, {
@@ -83,8 +83,9 @@ export default function ImDone() {
           type="text"
           placeholder="Your name"
           maxLength={30}
+          autoComplete="off"
           value={name}
-          onChange={(e) => setName(e.target.value)}
+          onInput={(e) => setName((e.target as HTMLInputElement).value)}
           className="w-full rounded-md bg-black p-3 mb-6 border border-gray-800 focus:ring-2 focus:ring-white text-white placeholder-gray-500"
         />
 
